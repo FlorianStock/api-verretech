@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize')
 const db = {}
 
-const sequelize = new Sequelize('verretech-erp-db', 'root', 'fenrirproject2020', {
-  host: 'localhost',
+const sequelize = new Sequelize('verretech-erp-db', 'fenrirproject', 'fenrirproject2020', {
+  host: '127.0.0.1',
   port:'27017',
   dialect: 'mysql', 
   multipleStatements: true,
