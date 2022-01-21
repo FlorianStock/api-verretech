@@ -10,27 +10,19 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@master
+      - name: Deploy project with SSH
+        uses: easingthemes/ssh-deploy@v2.1.4
+        
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.REMOTE }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          SOURCE: "./"
+          TARGET: "~/Api-verretech/"
+    
 
-    - name: Set up Node.js version
-      uses: actions/setup-node@v1
-      with:
-        node-version: '14.x'
 
-    - name: npm install, build, and test
-      run: |
-        npm install
-        npm run start --if-present
-        npm run test --if-present
-
-    - name: 'Deploy to Azure Web App'
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'api-verretech'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_c4a3a265ea074b56b7b31a0725833517 }}
-        package: .
+ 
