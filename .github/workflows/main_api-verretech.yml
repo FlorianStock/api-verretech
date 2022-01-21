@@ -21,7 +21,7 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           SOURCE: "./"
-          TARGET: "~/Api-verretech/"
+          TARGET: "~/api-verretech/"
     
 
 
